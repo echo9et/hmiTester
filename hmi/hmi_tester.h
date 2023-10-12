@@ -3,7 +3,9 @@
 
 #include <QWidget>
 
-#include <input_place.h>
+#include "input_place.h"
+#include "json_place.h"
+#include "logger_place.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class hmi_tester; }
@@ -19,6 +21,9 @@ public:
 
 private:
     InputPlace* _inputPlace;
+    JsonPlace* _jsonPlace;
+    LoggerPlace* _loggerPlace;
+
     Ui::hmi_tester *ui;
 };
 #endif // HMI_TESTER_H

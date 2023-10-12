@@ -1,0 +1,11 @@
+{
+	"Losses bar cleaning":{"id":5,"max":100,"min":0,"type_obj":"slider","type_val":"int"},
+	"Losses bar cleaning (mode)":{"id":7,"type_obj":"switch","type_val":"int"},
+	"Losses bar final":{"id":8,"max":100,"min":0,"type_obj":"slider","type_val":"int"},
+	"Losses bar final (mode)":{"id":10,"type_obj":"switch","type_val":"int"},
+	"Losses bar straw":{"id":11,"max":100,"min":0,"type_obj":"slider","type_val":"int"},
+	"Losses bar straw (mode)":{"id":13,"type_obj":"switch","type_val":"int"},
+	"Speedometr":{"id":1,"max":160,"min":0,"type_obj":"arc","type_val":"int"},
+	"Tachometer":{"id":3,"max":120,"min":0,"type_obj":"arc","type_val":"int"},
+	"Theme":{"id":100,"type_obj":"switch","type_val":"double"}
+}

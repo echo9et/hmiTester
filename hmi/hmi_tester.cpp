@@ -9,6 +9,11 @@ hmi_tester::hmi_tester(QWidget *parent)
     _inputPlace = new InputPlace(this);
     ui->mainLayout->addWidget(_inputPlace);
 
+    _jsonPlace = new JsonPlace(this);
+    ui->mainLayout->addWidget(_jsonPlace);
+
+    _loggerPlace = new LoggerPlace(this);
+    ui->mainLayout->addWidget(_loggerPlace);
 }
 
 hmi_tester::~hmi_tester()

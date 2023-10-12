@@ -16,17 +16,30 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    main.cpp \
-    hmi_tester.cpp \
-    input_place.cpp
+    hmi/json_custom_widgets.cpp \
+    hmi/json_place.cpp \
+    libs/json.cpp \
+    hmi/logger_place.cpp \
+    hmi/hmi_tester.cpp \
+    hmi/input_place.cpp \
+    main.cpp
+
 
 HEADERS += \
-    hmi_tester.h \
-    input_place.h
+    hmi/hmi_tester.h \
+    hmi/input_place.h \
+    hmi/json_custom_widgets.h \
+    hmi/json_data.h \
+    hmi/json_place.h \
+    hmi/logger_place.h \
+    libs/json.h \
 
 FORMS += \
-    hmi_tester.ui \
-    input_place.ui
+    hmi/hmi_tester.ui \
+    hmi/input_place.ui \
+    hmi/logger_place.ui \
+    hmi/ui_json_place/json_custom_widgets.ui \
+    hmi/json_place.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

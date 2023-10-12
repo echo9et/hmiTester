@@ -1,4 +1,4 @@
-#include "hmi_tester.h"
+#include "hmi/hmi_tester.h"
 
 #include <QApplication>
 

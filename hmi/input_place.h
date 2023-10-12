@@ -6,9 +6,8 @@
 #include <QString>
 #include <QSet>
 
-#include "QLineEdit"
-#include "QPushButton"
-#include "QLabel"
+#include <QLineEdit>
+#include <QPushButton>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -25,15 +24,18 @@ public:
 
     ~InputPlace();
 
+signals:
+    void pushAll();
+
 private slots:
     void on_cmdAddWidget_clicked();
-
     void on_cmdPushAll_clicked();
 
 private:
     void changeTypeCmd(QPushButton*);
     void changeTypeCmd(QLineEdit*);
-    QSet<QString> _supportType = {"int","double", "string"};
+    QSet<QPushButton*> _containerPtrCmdPushs;
+    QSet<QString> _supportType = {"int", "double", "string"};
     Ui::InputPlace *ui;
 };
 
@@ -51,6 +53,7 @@ public:
     QLineEdit   * _lineEditValue;
 public slots:
     void changeType();
+    void cmdPush();
 
 private:
     void changeTextCmdType();
