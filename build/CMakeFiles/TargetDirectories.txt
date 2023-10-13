@@ -1,4 +1,0 @@
-/home/ech9et/Documents/test/hmiTester/build/CMakeFiles/rebuild_cache.dir
-/home/ech9et/Documents/test/hmiTester/build/CMakeFiles/edit_cache.dir
-/home/ech9et/Documents/test/hmiTester/build/CMakeFiles/hmiTester.dir
-/home/ech9et/Documents/test/hmiTester/build/CMakeFiles/hmiTester_autogen.dir
