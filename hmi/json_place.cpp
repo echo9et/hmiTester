@@ -13,24 +13,31 @@ using namespace inputPlace::widgets;
 
 inline void parserJson(QFile& file_json, QVector<StructSlider>& container)
 {
-    std::stringstream stream ;
-    stream << file_json.readAll().toStdString();
-
-    const auto doc = json::Load(stream).GetRoot().AsDict();
-    const auto& array = doc.at("objs").AsArray();
-
-    for ( const auto& item : array )
+    try
     {
-        if ( QString::fromStdString(item.AsDict().at("type_obj").AsString()) == "slider" )
+        std::stringstream stream ;
+        stream << file_json.readAll().toStdString();
+
+        const auto doc = json::Load(stream).GetRoot().AsDict();
+        const auto& array = doc.at("objs").AsArray();
+
+        for ( const auto& item : array )
         {
-            container.push_back({
-                                    QString::fromStdString(item.AsDict().at("label").AsString()),
-                                    QString::fromStdString(item.AsDict().at("type_val").AsString()),
-                                    item.AsDict().at("id").AsInt(),
-                                    item.AsDict().at("min").AsInt(),
-                                    item.AsDict().at("max").AsInt()
-                                });
+            if ( QString::fromStdString(item.AsDict().at("type_obj").AsString()) == "slider" )
+            {
+                container.push_back({
+                                        QString::fromStdString(item.AsDict().at("label").AsString()),
+                                        QString::fromStdString(item.AsDict().at("type_val").AsString()),
+                                        item.AsDict().at("id").AsInt(),
+                                        item.AsDict().at("min").AsInt(),
+                                        item.AsDict().at("max").AsInt()
+                                    });
+            }
         }
+    }
+    catch (...)
+    {
+        container.clear();
     }
 }
 
