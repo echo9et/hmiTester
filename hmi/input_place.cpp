@@ -7,6 +7,75 @@
 
 #include <QDebug>
 
+class SingletonQIntValidator
+{
+    SingletonQIntValidator()
+    {
+        qDebug() << "constructor SingletonQIntValidator";
+        QLocale local(QLocale::C);
+        local.setNumberOptions(QLocale::RejectGroupSeparator);
+
+        _validator = new QIntValidator();
+        _validator->setLocale(local);
+    }
+    ~SingletonQIntValidator()
+    {
+        delete _validator;
+    }
+
+    static SingletonQIntValidator* _instance;
+    QIntValidator* _validator;
+
+protected:
+
+public:
+    static SingletonQIntValidator* getInstance()
+    {
+        if ( _instance == nullptr )
+            _instance = new SingletonQIntValidator();
+        return _instance;
+    }
+    QIntValidator* getValidator()
+    {
+        return _validator;
+    }
+};
+SingletonQIntValidator* SingletonQIntValidator::_instance = nullptr;
+
+class SingletonQDoubleValidator : public QDoubleValidator
+{
+    SingletonQDoubleValidator()
+    {
+        qDebug() << "constructor SingletonQDoubleValidator";
+        QLocale local(QLocale::C);
+        local.setNumberOptions(QLocale::RejectGroupSeparator);
+
+        _validator = new QDoubleValidator();
+        _validator->setNotation(QDoubleValidator::StandardNotation);
+        _validator->setLocale(local);
+    }
+    ~SingletonQDoubleValidator()
+    {
+        delete _validator;
+    }
+
+    static SingletonQDoubleValidator* _instance;
+    QDoubleValidator* _validator;
+public:
+    static SingletonQDoubleValidator* getInstance()
+    {
+        if ( _instance == nullptr )
+            _instance = new SingletonQDoubleValidator();
+        return _instance;
+    }
+    QDoubleValidator* getValidator()
+    {
+        return _validator;
+    }
+};
+SingletonQDoubleValidator* SingletonQDoubleValidator::_instance = nullptr;
+
+
 //---------------------------InputPlace---------------------------------------
 
 InputPlace::InputPlace(QWidget *parent) :
@@ -59,13 +128,7 @@ InputWidget::InputWidget(QWidget *parent, QSet<QString>* supportType ) :
     _supportType(supportType)
 {
     _lineEditId = new QLineEdit(this);
-    QLocale local(QLocale::C);
-    local.setNumberOptions(QLocale::RejectGroupSeparator);
-
-    QIntValidator* validator = new QIntValidator(this);
-    validator->setLocale(local);
-
-    _lineEditId->setValidator( validator );
+    _lineEditId->setValidator( SingletonQIntValidator::getInstance()->getValidator() );
 
     _lineEditValue = new QLineEdit(this);
 
@@ -126,24 +189,11 @@ void InputWidget::changeTypeInputLineEdit()
 
     if ( type == "int" )
     {
-        QLocale local(QLocale::C);
-        local.setNumberOptions(QLocale::RejectGroupSeparator);
-
-        QIntValidator* validator = new QIntValidator(this);
-        validator->setLocale(local);
-
-        _lineEditValue->setValidator( validator );
+        _lineEditValue->setValidator( SingletonQIntValidator::getInstance()->getValidator() );
     }
     else if ( type == "double" )
     {
-        QLocale local(QLocale::C);
-        local.setNumberOptions(QLocale::RejectGroupSeparator);
-
-        QDoubleValidator* validator = new QDoubleValidator(this);
-        validator->setNotation(QDoubleValidator::StandardNotation);
-        validator->setLocale(local);
-
-        _lineEditValue->setValidator( validator );
+        _lineEditValue->setValidator( SingletonQDoubleValidator::getInstance()->getValidator() );
     }
     else
     {
